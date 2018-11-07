@@ -1,0 +1,12 @@
+Windows
+slmgr.vbs -ipk 密钥
+slmgr.vbs -skms kms服务器地址
+slmgr.vbs -ato
+
+Office
+cd "C:\Program Files\Microsoft Office\Office16"
+cscript ospp.vbs /inpkey:密钥
+cscript ospp.vbs /sethst:kms服务器地址
+cscript ospp.vbs /act
+查看激活状态
+cscript ospp.vbs /dstatus
