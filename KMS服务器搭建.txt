@@ -1,0 +1,157 @@
+#################################Windows cmd########################################
+查看Windows完整版本号
+slmgr /dlv
+
+查看Windows激活信息
+slmgr.vbs -xpr
+
+安装密钥
+slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+
+修改密钥管理服务器地址（kms:key management service）
+slmgr /skms 服务器地址,在Debian系统中查看
+
+执行激活命令
+slmgr /ato
+
+以管理员身份运行命令提示符或者PowerShell，然后输入以下命令：
+cd /d "%SystemRoot%\system32"
+slmgr /skms 你的KMS服务端主机的IP或者域名
+slmgr /ato
+slmgr /xpr
+再次提醒，只能激活 VL 版的系统
+
+Windows 10
+Operating system edition		KMS Client Setup Key
+
+Windows 10 Professional			W269N-WFGWX-YVC9B-4J6C9-T83GX
+
+Windows 10 Professional N		MH37W-N47XK-V7XM9-C7227-GCQG9
+
+Windows 10 Enterprise			NPPR9-FWDCX-D2C8J-H872K-2YT43
+
+Windows 10 Enterprise N			DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4
+
+Windows 10 Education			NW6C2-QMPVW-D7KKK-3GKT6-VCFB2
+
+Windows 10 Education N			2WH4N-8QGBV-H22JP-CT43Q-MDWWJ
+
+激活office：
+
+管理员权限启动CMD：
+A、使用CMD「CD」命令切换到office安装目录，office 2010使用『office14』文件夹；office 2013使用『office15』文件夹；office 2016使用『office16』文件夹。
+B、office区分x64和x86版本，路径也区分。以office 2016为例：x64路径『C:\Program Files\Microsoft Office\Office16』；x86路径『C:\Program Files (x86)\Microsoft Office\Office16』。
+C、激活：
+
+『cscript ospp.vbs /inpkey:KMS GVLK』
+
+『cscript ospp.vbs /sethst:KMS激活服务器』
+
+『cscript ospp.vbs /act』激活
+
+『cscript ospp.vbs /dstatus』查看激活信息
+
+
+##################################Windows cmd########################################
+
+
+
+
+##################################one-key-kms########################################
+在Linux上一键搭建KMS服务器
+
+特别感谢KMS服务器程序的开发者Wind4
+
+
+KMS服务器软件vlmcsd Github主页：https://github.com/Wind4/vlmcsd
+
+`现在还处于测试阶段，您的服务器出现任何问题本人与服务器程序作者均不承担任何责任。`
+
+请根据自己的服务器操作系统运行对应的脚本。
+
+CentOS，Redhat，Fedora等请选择CentOS脚本
+
+Debian，Ubuntu，Mint等请选择Debian脚本
+
+##kms.sh管理脚本的使用：
+
+如果您使用这里的一键脚本安装，即可完美使用该脚本，否则需要手动更改可执行文件存放路径
+
+只有start/stop/restart/status的功能，直接执行即可
+
+./kms.sh start
+###################################one-key-kms########################################
+
+######################################Debian##########################################
+
+修改源
+deb-src http://archive.ubuntu.com/ubuntu xenial main restricted #Added by software-properties
+deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe #Added by software-properties
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe #Added by software-properties
+deb http://mirrors.aliyun.com/ubuntu/ xenial universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse #Added by software-properties
+deb http://archive.canonical.com/ubuntu xenial partner
+deb-src http://archive.canonical.com/ubuntu xenial partner
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe #Added by software-properties
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
+
+
+复制文件夹one-key-kms到/home/Tan/
+sudo ./one-key-kms-debian.sh
+sudo ./kms.sh start
+
+Attention:		$’\r’: command not found($'\ r'：找不到命令)
+				在Windows PC上创建脚本并将它们复制到Linux机器上，以便在试图执行它们时仅收到“$'\ r'：命令未找到”。
+				这是由于文件以DOS格式保存，其中新行以\ n \ n格式分隔，而不是* nix \ n格式。
+				您可以确保文件在Win文本编辑器中以Unix格式保存，甚至可以使用这种非常简单的方法在Linux机器上处理它们：
+				sudo apt-get install dos2unix
+				sudo dos2unix <your filename here>
+
+查看端口的使用的情况:lsof 命令
+
+比如查看80端口的使用的情况。
+lsof -i tcp:80
+
+列出所有的端口
+netstat -ntlp
+
+查看端口的状态
+ /etc/init.d/iptables status
+
+				
+下载脚本并运行，根据提示键入y开始安装
+CentOS / Redhat / Fedora
+wget https://raw.githubusercontent.com/dakkidaze/one-key-kms/master/one-key-kms-centos.sh && chmod +x one-key-kms-centos.sh &&./one-key-kms-centos.sh
+Debian / Ubuntu / Mint
+
+wget https://raw.githubusercontent.com/dakkidaze/one-key-kms/master/one-key-kms-debian.sh && chmod +x one-key-kms-debian.sh && ./one-key-kms-debian.sh
+
+下载这个作者写的配套脚本来控制启动/停止/重启等
+#下载脚本
+wget https://raw.githubusercontent.com/dakkidaze/one-key-kms/master/kms.sh && chmod +x kms.sh
+
+#启动 KMS 服务
+./kms.sh start
+#这个脚本可以使用的参数：
+# start | stop | restart | status
+
+如果你的防火墙默认 DROP，那么需要手动放行1688端口
+CentOS / Redhat / Fedora
+iptables -I INPUT -p tcp --dport 1688 -j ACCEPT
+Debian / Ubuntu / Mint
+#如果有 ufw 的话
+ufw allow 1688
+#如果没有的话，这么方便的防火墙工具为啥不装一个嘞~
+
+查看Debian的IP地址
+ip addr show
+
+######################################Debian##########################################

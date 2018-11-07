@@ -1,0 +1,29 @@
+<Configuration>
+
+  <Add SourcePath="H:\" OfficeClientEdition="64" >
+
+    <Product ID="ProPlusRetail">
+
+      <Language ID="zh-CN" />
+
+  <ExcludeApp ID="Access" />
+
+  <ExcludeApp ID="Groove" />
+
+  <ExcludeApp ID="InfoPath" />
+
+  <ExcludeApp ID="Lync" />
+
+  <ExcludeApp ID="OneNote" />
+
+  <ExcludeApp ID="Outlook" />
+
+  <ExcludeApp ID="Publisher" />
+
+  <ExcludeApp ID="SharePointDesigner" />
+
+    </Product>
+
+  </Add>  
+
+</Configuration>
